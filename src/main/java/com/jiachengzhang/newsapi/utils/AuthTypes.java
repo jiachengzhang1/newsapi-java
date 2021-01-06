@@ -8,11 +8,11 @@ public enum AuthTypes {
 
     private final String value;
 
-    AuthTypes(String value) {
+    AuthTypes (String value) {
         this.value = value;
     }
 
-    public String getValue() {
+    public String getValue () {
         return value;
     }
 }

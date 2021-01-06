@@ -8,11 +8,11 @@ public enum Endpoints {
 
     private final String value;
 
-    Endpoints(String value) {
+    Endpoints (String value) {
         this.value = value;
     }
 
-    public String getValue() {
+    public String getValue () {
         return value;
     }
 }

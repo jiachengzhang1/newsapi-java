@@ -1,7 +1,14 @@
 package com.jiachengzhang.newsapi.exceptions;
 
 public class UnexpectedErrorException extends RuntimeException {
-    public UnexpectedErrorException(String errorMessage) {
+    private int errorCode;
+
+    public UnexpectedErrorException (String errorMessage, int errorCode) {
         super(errorMessage);
+        this.errorCode = errorCode;
+    }
+
+    public int getErrorCode () {
+        return errorCode;
     }
 }

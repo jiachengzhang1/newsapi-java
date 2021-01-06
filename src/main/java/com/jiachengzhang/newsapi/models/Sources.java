@@ -1,27 +1,20 @@
 package com.jiachengzhang.newsapi.models;
 
-import com.google.gson.JsonObject;
 import lombok.Getter;
 
 import java.util.LinkedList;
 import java.util.List;
 
+@Getter
 public class Sources {
-    @Getter private List<Source> sources;
+    private final List<Source> sources;
+    private String status;
 
-    public Sources() {
+    public Sources () {
         sources = new LinkedList<>();
     }
 
-    public void add(Source source) {
-        sources.add(source);
-    }
-
-    public int count() {
+    public int count () {
         return sources.size();
-    }
-
-    public JsonObject toJson() {
-        return null;
     }
 }
