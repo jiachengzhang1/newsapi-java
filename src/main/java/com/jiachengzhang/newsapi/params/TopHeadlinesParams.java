@@ -33,9 +33,6 @@ public class TopHeadlinesParams extends RequestParams {
 
             @Override
             public Builder setSources (String sources) {
-                if (sourcesInvalid(sources)) {
-                    throw new ParameterInvalidException("Invalid Parameters: \"sources\" is invalid");
-                }
                 params.put("sources", sources);
                 return this;
             }
