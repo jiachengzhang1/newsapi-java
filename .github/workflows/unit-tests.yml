@@ -30,3 +30,5 @@ jobs:
 
             - name: Maven Verify
               run: mvn -B clean verify
+              env:
+                  NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
