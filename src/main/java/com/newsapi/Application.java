@@ -15,7 +15,7 @@ public class Application {
 
 
     public static void main (String[] args) throws IOException, InterruptedException {
-        String key = "";
+        String key = "6100e6fa7c484391a97f1f28e97bf95a";
 
 
         Map<String, String> sourcesParams = SourcesParams.newBuilder()

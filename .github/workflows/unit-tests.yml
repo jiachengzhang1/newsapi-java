@@ -1,4 +1,4 @@
-name: Maven Build
+name: Unit Tests
 
 on:
     push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
     test:
-        name: Unit Test
+        name: Unit Tests
 
         strategy:
             matrix:
