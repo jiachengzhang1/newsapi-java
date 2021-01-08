@@ -3,7 +3,7 @@
 A flexible and easy-to-use Java wrapper for [News API](https://newsapi.org). (It only supports for Java 11 and above at the moment)
 
 <p align="left">
-<a href="https://github.com/jiachengzhang1/newsapi-java"><img alt="GitHub Actions status" src="https://github.com/jiachengzhang1/newsapi-java/workflows/mvn-build/badge.svg"></a>
+<a href="https://github.com/jiachengzhang1/newsapi-java"><img alt="GitHub Actions status" src="https://github.com/jiachengzhang1/newsapi-java/workflows/maven-build/badge.svg"></a>
 </p>
 
 ## Installation
