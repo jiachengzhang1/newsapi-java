@@ -7,7 +7,7 @@ A flexible and easy-to-use Java wrapper for [News API](https://newsapi.org). (It
 
 ### Gradle
 
-## Usage
+## Basic Usage
 **First, create a News API client**
 ```java
 import com.newsapi.net.NewsAPI;
