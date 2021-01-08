@@ -3,7 +3,7 @@
 A flexible and easy-to-use Java wrapper for [News API](https://newsapi.org). (It only supports for Java 11 and above at the moment)
 
 <p align="left">
-[![Unit Tests](https://github.com/jiachengzhang1/newsapi-java/workflows/Unit%20Tests/badge.svg)](https://github.com/jiachengzhang1/newsapi-java)
+  <a href="https://github.com/jiachengzhang1/newsapi-java"><img alt="Unit Tests GitHub Actions Status" src="https://github.com/jiachengzhang1/newsapi-java/workflows/Unit%20Tests/badge.svg"></a>
 </p>
 
 ## Installation
