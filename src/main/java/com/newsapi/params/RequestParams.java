@@ -38,13 +38,14 @@ public class RequestParams {
 
 
     public static boolean domainsInvalid (String domains) {
+
         for (String s : domains.split(",")) {
             Pattern p = Pattern.compile(domainsRegex);
             if (s == null || !p.matcher(s).matches()) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public static boolean excludeDomainsInvalid (String excludeDomainsInvalid) {

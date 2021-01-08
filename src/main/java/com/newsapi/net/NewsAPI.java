@@ -1,6 +1,7 @@
 package com.newsapi.net;
 
 import com.google.gson.Gson;
+import com.newsapi.exceptions.APIKeyMissingException;
 import com.newsapi.models.Everything;
 import com.newsapi.models.Sources;
 import com.newsapi.models.TopHeadlines;
@@ -18,7 +19,13 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Map;
 
+/**
+ *
+ */
 public class NewsAPI {
+    /**
+     * @return
+     */
     public static Builder newClientBuilder () {
         return new Builder() {
 
@@ -32,7 +39,7 @@ public class NewsAPI {
             private int timeoutSeconds = 5;
 
             private AuthTypes authType = AuthTypes.AUTHORIZATION_HEADER;
-            private String apiKey;
+            private String apiKey = null;
             private boolean noCache = false;
 
             @Override
@@ -72,7 +79,7 @@ public class NewsAPI {
                     private final HttpClient httpClient = buildClient();
 
                     @Override
-                    public NewAPIResponse getSources (Map<String, String> params) throws IOException, InterruptedException {
+                    public NewsAPIResponse getSources (Map<String, String> params) throws IOException, InterruptedException {
                         HttpResponse<String> httpResponse = send(buildRequest(Endpoints.SOURCES, params));
                         return new NewsAPIHttpResponse(httpResponse) {
                             @Override
@@ -84,12 +91,12 @@ public class NewsAPI {
                     }
 
                     @Override
-                    public NewAPIResponse get (String endpoint, Map<String, String> params) throws IOException, InterruptedException {
+                    public NewsAPIResponse get (String endpoint, Map<String, String> params) throws IOException, InterruptedException {
                         return null;
                     }
 
                     @Override
-                    public NewAPIResponse getEverything (Map<String, String> params) throws IOException, InterruptedException {
+                    public NewsAPIResponse getEverything (Map<String, String> params) throws IOException, InterruptedException {
                         HttpResponse<String> httpResponse = send(buildRequest(Endpoints.EVERYTHING, params));
                         return new NewsAPIHttpResponse(httpResponse) {
                             @Override
@@ -101,7 +108,7 @@ public class NewsAPI {
                     }
 
                     @Override
-                    public NewAPIResponse getTopHeadlines (Map<String, String> params) throws IOException, InterruptedException {
+                    public NewsAPIResponse getTopHeadlines (Map<String, String> params) throws IOException, InterruptedException {
                         HttpResponse<String> httpResponse = send(buildRequest(Endpoints.TOP_HEADLINES, params));
                         return new NewsAPIHttpResponse(httpResponse) {
                             @Override
@@ -112,6 +119,31 @@ public class NewsAPI {
                         };
                     }
 
+                    @Override
+                    public boolean getNoCache () {
+                        return noCache;
+                    }
+
+                    @Override
+                    public int getTimeoutSeconds () {
+                        return timeoutSeconds;
+                    }
+
+                    @Override
+                    public HttpVersions getHttpVersion () {
+                        return httpVersion;
+                    }
+
+                    @Override
+                    public String getApiKey () {
+                        return apiKey;
+                    }
+
+                    @Override
+                    public AuthTypes getAuthType () {
+                        return authType;
+                    }
+
                     private HttpResponse<String> send (HttpRequest httpRequest) throws IOException, InterruptedException {
                         return httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
                     }
@@ -119,6 +151,9 @@ public class NewsAPI {
             }
 
             private HttpClient buildClient () {
+                if (apiKey == null) {
+                    throw new APIKeyMissingException("API key is missing", 401);
+                }
                 return httpClientBuilder.connectTimeout(Duration.ofSeconds(timeoutSeconds))
                         .version(httpVersion.getValue())
                         .build();
@@ -169,16 +204,40 @@ public class NewsAPI {
     }
 
     public interface Builder {
+        /**
+         * @param noCache
+         * @return
+         */
         Builder setNoCache (boolean noCache);
 
+        /**
+         * @param seconds
+         * @return
+         */
         Builder setTimeoutSeconds (int seconds);
 
+        /**
+         * @param httpVersion
+         * @return
+         */
         Builder setHttpVersion (HttpVersions httpVersion);
 
+        /**
+         * @param apiKey
+         * @return
+         */
         Builder setApiKey (String apiKey);
 
+        /**
+         * @param authType
+         * @param apiKey
+         * @return
+         */
         Builder setAuthorization (AuthTypes authType, String apiKey);
 
+        /**
+         * @return
+         */
         NewsAPIClient build ();
     }
 }

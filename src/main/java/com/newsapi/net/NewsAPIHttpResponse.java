@@ -8,7 +8,10 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
 
-abstract class NewsAPIHttpResponse implements NewAPIResponse {
+/**
+ *
+ */
+abstract class NewsAPIHttpResponse implements NewsAPIResponse {
     private final HttpResponse<String> httpResponse;
 
     public NewsAPIHttpResponse (HttpResponse<String> httpResponse) {
