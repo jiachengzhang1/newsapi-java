@@ -43,5 +43,6 @@ public class Application {
 
         System.out.println(response.getBodyAsString());
         System.out.println(sources.getSources().get(0).getDescription());
+        response.getHeaders().forEach((k, v) -> System.out.println(k + ":" + v));
     }
 }

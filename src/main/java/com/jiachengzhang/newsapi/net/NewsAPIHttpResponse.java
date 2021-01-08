@@ -23,7 +23,7 @@ abstract class NewsAPIHttpResponse implements NewAPIResponse {
 
     @Override
     public Map<String, List<String>> getHeaders () {
-        return null;
+        return httpResponse.headers().map();
     }
 
     @Override
