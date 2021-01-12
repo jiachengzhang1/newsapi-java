@@ -28,7 +28,7 @@ jobs:
               with:
                   java-version: 11
 
-            - name: Maven Verify
-              run: mvn -B clean verify
+            - name: Maven Run Tests
+              run: mvn -B clean test
               env:
                   NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
