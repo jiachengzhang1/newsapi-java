@@ -3,9 +3,8 @@
 A flexible and easy-to-use Java wrapper for [News API](https://newsapi.org). (It only supports for Java 11 and above at
 the moment)
 
-[![Unit Test](https://github.com/jiachengzhang1/newsapi-java/workflows/Unit%20Tests/badge.svg)](https://github.com/jiachengzhang1/newsapi-java)
 [![Maven](https://img.shields.io/maven-central/v/com.jzhangdeveloper.newsapi/newsapi-java.svg?label=Maven)](https://search.maven.org/search?q=g:%22com.jzhangdeveloper.newsapi%22%20AND%20a:%22newsapi-java%22)
-
+[![Unit Test](https://github.com/jiachengzhang1/newsapi-java/workflows/Unit%20Tests/badge.svg)](https://github.com/jiachengzhang1/newsapi-java)
 
 ## Installation
 
