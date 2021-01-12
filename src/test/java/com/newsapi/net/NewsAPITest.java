@@ -9,6 +9,7 @@ import com.newsapi.params.EverythingParams;
 import com.newsapi.params.SourcesParams;
 import com.newsapi.params.TopHeadlinesParams;
 import com.newsapi.utils.AuthTypes;
+import com.newsapi.utils.Endpoints;
 import com.newsapi.utils.HttpVersions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -116,7 +117,7 @@ class NewsAPITest {
         void getTopHeadlines () throws IOException, InterruptedException {
             int pageSize = 1;
             Map<String, String> params = TopHeadlinesParams.newBuilder()
-                    .setSearchQuery("spacex")
+                    .setCountry("us")
                     .setPageSize(pageSize)
                     .build();
             NewsAPIResponse response = builder.setApiKey(apiKey).build().getTopHeadlines(params);
@@ -125,6 +126,42 @@ class NewsAPITest {
             assertTrue(response.getBodyAsJson().isJsonObject());
             assertEquals("ok", topHeadlines.getStatus());
             assertEquals(pageSize, topHeadlines.count());
+        }
+
+        @Test
+        void get () throws IOException, InterruptedException {
+            int pageSize = 1;
+            Map<String, String> params = TopHeadlinesParams.newBuilder()
+                    .setCountry("us")
+                    .setPageSize(pageSize)
+                    .build();
+            NewsAPIResponse response = builder.setApiKey(apiKey).build().get(Endpoints.TOP_HEADLINES, params);
+            TopHeadlines topHeadlines = response.getBody();
+            assertEquals(200, response.getStatusCode());
+            assertTrue(response.getBodyAsJson().isJsonObject());
+            assertEquals("ok", topHeadlines.getStatus());
+            assertEquals(pageSize, topHeadlines.count());
+
+            params = EverythingParams.newBuilder()
+                    .setSearchQuery("spacex")
+                    .setPageSize(pageSize)
+                    .build();
+            response = builder.setApiKey(apiKey).build().get(Endpoints.EVERYTHING, params);
+            Everything everything = response.getBody();
+            assertEquals(200, response.getStatusCode());
+            assertTrue(response.getBodyAsJson().isJsonObject());
+            assertEquals("ok", everything.getStatus());
+            assertEquals(pageSize, everything.count());
+
+            params = SourcesParams.newBuilder()
+                    .setCountry("us")
+                    .build();
+            response = builder.setApiKey(apiKey).build().get(Endpoints.SOURCES, params);
+            Sources sources = response.getBody();
+            assertEquals(200, response.getStatusCode());
+            assertTrue(response.getBodyAsJson().isJsonObject());
+            assertEquals("ok", sources.getStatus());
+            assertNotEquals(0, sources.count());
         }
     }
 

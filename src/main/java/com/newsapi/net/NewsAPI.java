@@ -91,8 +91,17 @@ public class NewsAPI {
                     }
 
                     @Override
-                    public NewsAPIResponse get (String endpoint, Map<String, String> params) throws IOException, InterruptedException {
-                        return null;
+                    public NewsAPIResponse get (Endpoints endpoint, Map<String, String> params) throws IOException, InterruptedException {
+                        switch (endpoint) {
+                            case SOURCES:
+                                return getSources(params);
+                            case EVERYTHING:
+                                return getEverything(params);
+                            case TOP_HEADLINES:
+                                return getTopHeadlines(params);
+                            default:
+                                return null;
+                        }
                     }
 
                     @Override

@@ -1,6 +1,7 @@
 package com.newsapi.net;
 
 import com.newsapi.utils.AuthTypes;
+import com.newsapi.utils.Endpoints;
 import com.newsapi.utils.HttpVersions;
 
 import java.io.IOException;
@@ -26,7 +27,7 @@ public interface NewsAPIClient {
      * @throws IOException
      * @throws InterruptedException
      */
-    NewsAPIResponse get (String endpoint, Map<String, String> params) throws IOException, InterruptedException;
+    NewsAPIResponse get (Endpoints endpoint, Map<String, String> params) throws IOException, InterruptedException;
 
     /**
      * @param params
